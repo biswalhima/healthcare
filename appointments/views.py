@@ -12,6 +12,7 @@ from django.template import TemplateDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from .models import Appointment
 
 from .forms import AppointmentForm  # You will need to create this form
 
@@ -23,6 +24,13 @@ logger = logging.getLogger(__name__)
 def home(request):
     return render(request, 'home.html')
 
+@login_required
+def appointments(request):
+    # Get all appointments where the current user is a doctor
+    appointments = Appointment.objects.filter(doctor=request.user)
+
+    # Render appointments template with the appointments context
+    return render(request, 'appointments/appointments.html', {'appointments': appointments})
 
 def role_required(role):
     def decorator(view_func):
