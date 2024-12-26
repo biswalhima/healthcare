@@ -2,6 +2,9 @@
 from django.urls import path
 from . import views
 
+
+app_name = 'appointments'  # Declare the namespace
+
 urlpatterns = [
     path('', views.home, name='home'),  # Home page URL
     path('dashboard/patient/', views.patient_dashboard, name='patient_dashboard'),

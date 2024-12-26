@@ -8,7 +8,7 @@ class User(AbstractUser):
         ('patient', 'Patient'),
     )
     
-    role = models.CharField(max_length=100, choices=ROLES)
+    role = models.CharField(max_length=100, choices=ROLES,default='patient')
 
     # Specify unique related_name attributes for groups and user_permissions
     groups = models.ManyToManyField(

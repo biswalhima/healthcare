@@ -10,6 +10,12 @@ from pathlib import Path
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.urls import reverse
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 def home(request):
     return render(request, 'home.html')
@@ -44,8 +50,10 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
                user = form.save()
-               login(request, user)
-               return redirect('login')  # Redirect to login page after successful registration
+               auth_login(request, user)
+               return redirect(reverse('appointments:home'))
+
+
     else:
         form = RegistrationForm()
 
@@ -58,7 +66,17 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
-            return redirect('home')  # Replace with your desired page after login
+
+            logger.info(f"User {user.username} with role {user.role} has logged in.")
+
+            if user.role == 'doctor':
+                return redirect(reverse('doctor_dashboard'))
+            elif user.role == 'patient':
+                return redirect(reverse('appointments:patient_dashboard'))
+            elif user.role == 'admin':
+                return redirect('admin_dashboard')
+            else:
+                return redirect(reverse('appointments:home'))
     else:
         form = AuthenticationForm()
 
