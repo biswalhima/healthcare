@@ -13,6 +13,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
+from .forms import AppointmentForm  # You will need to create this form
+
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -70,7 +73,7 @@ def login(request):
             logger.info(f"User {user.username} with role {user.role} has logged in.")
 
             if user.role == 'doctor':
-                return redirect(reverse('doctor_dashboard'))
+                return redirect(reverse('appointments:doctor_dashboard'))
             elif user.role == 'patient':
                 return redirect(reverse('appointments:patient_dashboard'))
             elif user.role == 'admin':
@@ -83,3 +86,20 @@ def login(request):
     return render(request, 'login.html', {'form': form})
 def login_view(request):
     return render(request, 'login.html')
+
+
+
+# Create the view for booking appointment
+@login_required
+def book_appointment(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.patient = request.user
+            appointment.save()
+            return redirect('appointments:patient_dashboard')  # Redirect to the patient dashboard after successful booking
+    else:
+        form = AppointmentForm()
+
+    return render(request, 'appointments/book_appointment.html', {'form': form})

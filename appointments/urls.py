@@ -12,6 +12,7 @@ urlpatterns = [
     path('dashboard/admin/', views.admin_dashboard, name='admin_dashboard'),
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
+    path('book_appointment/', views.book_appointment, name='book_appointment'),  # Add this line for book_appointment URL
 
 
 
