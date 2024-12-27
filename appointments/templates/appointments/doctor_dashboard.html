@@ -7,22 +7,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: #005f8c;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: #004d70;
+            transform: scale(1.05);
+        }
+
+        main {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        main h2 {
+            font-size: 2.2rem;
+            color: #0077b6;
+            margin-bottom: 1rem;
+        }
+
+        main p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #0077b6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Welcome, Dr. {{ user.username }}!</h1>
         <nav>
-            <a href="{% url 'appointments:appointments' %}">Patient Appointments</a>  <!-- Un-comment this link -->
-
-            {% comment %} <a href="{% url 'appointments:manage_schedule' %}">Manage Schedule</a>
-            <a href="{% url 'appointments:appointments' %}">Patient Appointments</a> {% endcomment %}
+            <a href="{% url 'appointments:appointments' %}">Patient Appointments</a>
             <a href="{% url 'logout' %}">Logout</a>
         </nav>
     </header>
 
     <main>
         <h2>Dashboard</h2>
-        <p>Manage your schedule, appointments, and consultation notes.</p>
+        <p>Manage your schedule, appointments, and consultation notes efficiently. Stay organized and focus on delivering quality care to your patients.</p>
     </main>
+
+    <footer>
+        <p>Healthcare Appointment System © 2024 - <a href="#">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>

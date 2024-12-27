@@ -1,3 +1,4 @@
+{% comment %} {% comment %} 
 {% load static %}
 
 <!DOCTYPE html>
@@ -7,15 +8,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: #004b99;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #003366;
+        }
+
+        main {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        main h2 {
+            font-size: 2rem;
+            color: #0066cc;
+        }
+
+        main p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Welcome, {{ user.username }}!</h1>
         <nav>
             <a href="{% url 'appointments:book_appointment' %}">Book Appointment</a>
-            {% comment %} <a href="{% url 'appointments:book_appointment' %}">Book Appointment</a>
-            <a href="{% url 'appointments:upcoming_appointments' %}">Upcoming Appointments</a>
-            <a href="{% url 'appointments:past_appointments' %}">Past Appointments</a> {% endcomment %}
+            {% comment %} <a href="{% url 'appointments:upcoming_appointments' %}">Upcoming Appointments</a>
+            <a href="{% url 'appointments:past_appointments' %}">Past Appointments</a> 
             <a href="{% url 'logout' %}">Logout</a>
         </nav>
     </header>
@@ -24,5 +97,158 @@
         <h2>Dashboard</h2>
         <p>Manage your appointments and view your medical history.</p>
     </main>
+
+   
+</body>
+</html> {% endcomment %} 
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/static/login.jpeg') no-repeat center center fixed; /* Set your image URL here */
+            {% comment %} background-size: cover; /* Cover the entire screen */
+            display: flex; {% endcomment %}
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: #004b99;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #003366;
+        }
+
+        main {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        main h2 {
+            font-size: 2rem;
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        main .content {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        main .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        main .card:hover {
+            transform: translateY(-5px);
+        }
+
+        main .card h3 {
+            font-size: 1.5rem;
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+
+        main .card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ user.username }}!</h1>
+        <nav>
+            <a href="{% url 'appointments:book_appointment' %}">Book Appointment</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Dashboard</h2>
+        <div class="content">
+            <div class="card">
+                <h3>Upcoming Appointments</h3>
+                <p>View and manage your upcoming appointments easily.</p>
+            </div>
+            <div class="card">
+                <h3>Past Appointments</h3>
+                <p>Review your past medical visits and history.</p>
+            </div>
+            <div class="card">
+                <h3>Medical History</h3>
+                <p>Access your medical records and details in one place.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Healthcare Appointment System - <a href="#">Learn More</a></p>
+    </footer>
 </body>
 </html>
+

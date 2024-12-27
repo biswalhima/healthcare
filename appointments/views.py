@@ -24,6 +24,10 @@ logger = logging.getLogger(__name__)
 def home(request):
     return render(request, 'home.html')
 
+
+def admin_dashboard(request):
+    return render(request, 'appointments/admin_dashboard.html')
+
 @login_required
 def appointments(request):
     # Get all appointments where the current user is a doctor

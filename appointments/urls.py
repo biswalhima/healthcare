@@ -4,6 +4,7 @@ from . import views
 from django.contrib.auth.views import LogoutView
 
 app_name = 'appointments'  # Declare the namespace
+app_name = 'admin'
 
 urlpatterns = [
     path('', views.home, name='home'),  # Home page URL

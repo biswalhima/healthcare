@@ -5,23 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Healthcare Appointment System{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/static/login.jpeg') no-repeat center center fixed; /* Set your image URL here */
+            {% comment %} background-size: cover; /* Cover the entire screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0; {% endcomment %}
+        }
+    </style>
 </head>
 <body>
     <header>
-        {% comment %} <nav>
-            <!-- Navigation links here -->
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'patient_dashboard' %}">Patient Dashboard</a>
-            <a href="{% url 'doctor_dashboard' %}">Doctor Dashboard</a>
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
-        </nav> {% endcomment %}
+        
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>Healthcare Appointment System - All rights reserved</p>
+        <p align='center'>Healthcare Appointment System - All rights reserved</p>
     </footer>
 </body>
 </html>

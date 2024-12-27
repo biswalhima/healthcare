@@ -1,11 +1,13 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Book an Appointment</h2>
-
-  <form method="POST">
+<h2 style="text-align: center; color: #0066cc; font-size: 2rem;">Book an Appointment</h2>
+<form method="POST" style="max-width: 500px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Book Appointment</button>
-  </form>
+    <div style="margin-bottom: 1rem;">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" style="display: block; width: 100%; padding: 0.8rem; border: none; background-color: #0066cc; color: #fff; font-size: 1rem; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Book Appointment</button>
+</form>
 {% endblock %}
