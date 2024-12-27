@@ -13,6 +13,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from .models import Appointment
+from django.contrib.auth import logout
+from django.views.decorators.http import require_http_methods
 
 from .forms import AppointmentForm  # You will need to create this form
 
@@ -35,6 +37,12 @@ def appointments(request):
 
     # Render appointments template with the appointments context
     return render(request, 'appointments/appointments.html', {'appointments': appointments})
+
+@require_http_methods(["GET", "POST"])
+def custom_logout_view(request):
+    logout(request)
+    return redirect('appointments:login')  # Redirect to the login page after logout
+
 
 def role_required(role):
     def decorator(view_func):
