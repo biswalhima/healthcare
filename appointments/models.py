@@ -11,7 +11,7 @@ from django.conf import settings  # Import settings to reference the custom user
 
 class User(AbstractUser):
     ROLES = (
-        ('admin', 'Admin'),
+        # ('admin', 'Admin'),
         ('doctor', 'Doctor'),
         ('patient', 'Patient'),
     )
